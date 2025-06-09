@@ -5,14 +5,6 @@ local fs = require("filesystem")
 local im = ImGui ~= nil and ImGui.ImGui or {}
 
 local buttonMatrix = {
-	{label = "Recall", command = "/ub jump"},{label = "Primary", command = "p"},{label = "Secondary", command = "Secondary"},
-	{label = "LS", command = "ls"},
-	{label = "LS Send", command = "ls"},
-	{label = "Ulgrims", command = "ls"},
-	{label = "Sanc", command = "ls"}
-	}
-
-local buttonMatrix2 = {
 	{
 		{
 			label = "TN", 
@@ -207,13 +199,13 @@ if ImGui ~= nil and views ~= nil then
 	hud.OnRender.Add(function()
 		if im.BeginTabBar("RecallAssistBar") then
 			if im.BeginTabItem("Recall Gems") then
-				if im.BeginTable("GemsTable",#buttonMatrix2[1]) then
-					for row = 1, #buttonMatrix2 do
+				if im.BeginTable("GemsTable",#buttonMatrix[1]) then
+					for row = 1, #buttonMatrix do
 						im.TableNextRow()
 		
-						for col = 1, #buttonMatrix2[row] do			
+						for col = 1, #buttonMatrix[row] do			
 							im.TableNextColumn()
-							local cmd = buttonMatrix2[row][col]
+							local cmd = buttonMatrix[row][col]
 							
 							if cmd.label ~= "none" then		
 								if im.ImageButton(cmd.label, cmd.IconTexture.TexturePtr, Vector2.new(33, 33)) then
